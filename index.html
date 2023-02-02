@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tibia Calculator</title>
+</head>
+<body>
+	<h1>Stamina Calculator</h1>
+	<form onsubmit="return false">
+		<p>Current stamina: <input type="text" id="cStamina"></p>
+		<p>Desired stamina: <input type="text" id="dStamina"> at date <input type="datetime-local" id="dTime"></p>
+		<input type="submit" value="Calculate" onclick="calcStamina()">
+	</form>
+
+	<p id="calcResult"></p>
+
+	<script>
+		function calcStamina() {
+			let currentStamina = document.getElementById("cStamina").value.split(":");
+			let desiredStamina = document.getElementById("dStamina").value.split(":");
+
+			let desiredDate = new Date(document.getElementById("dTime").value);
+
+			let currentStaminaSec = Number(currentStamina[0])*60+Number(currentStamina[1]);
+			let desiredStaminaSec = Number(desiredStamina[0])*60+Number(desiredStamina[1]);
+			let minutesOffline = (desiredStaminaSec-currentStaminaSec)*3+10;
+
+			let logoutDate = new Date(desiredDate-minutesOffline*60*1000);
+			let resultElement = document.getElementById("calcResult");
+			resultElement.innerHTML = `In order to regenerate your stamina to ${desiredStamina.join(":")} on ${desiredDate.toLocaleString()} you will have to log out on ${logoutDate.toLocaleString()}, when your stamina shows ${desiredStamina.join(":")}`;
+		}
+	</script>
+</body>
+</html>
