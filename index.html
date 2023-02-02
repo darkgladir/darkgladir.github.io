@@ -28,7 +28,7 @@
 
 			let logoutDate = new Date(desiredDate-minutesOffline*60*1000);
 			let resultElement = document.getElementById("calcResult");
-			resultElement.innerHTML = `In order to regenerate your stamina to ${desiredStamina.join(":")} on ${desiredDate.toLocaleString()} you will have to log out on ${logoutDate.toLocaleString()}, when your stamina shows ${desiredStamina.join(":")}`;
+			resultElement.innerHTML = `In order to regenerate your stamina to ${desiredStamina.join(":")} on ${desiredDate.getDate()}/${desiredDate.getMonth()+1}/${desiredDate.getFullYear()}, ${desiredDate.getHours()}:${desiredDate.getMinutes()}<br>You will have to log out on ${logoutDate.getDate()}/${logoutDate.getMonth()+1}/${logoutDate.getFullYear()}, ${logoutDate.getHours()}:${logoutDate.getMinutes()}`;
 		}
 	</script>
 </body>
