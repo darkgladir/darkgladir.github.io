@@ -32,10 +32,12 @@
 			}
 
 			let firstCalc = 0;
-			if (cMin < 39*60)
+			if (cMin < 39*60) {
 				firstCalc = (39*60-cMin)*3;
+				cMin = 39*60;
+			}
 
-			return (dMin-39*60)*6+firstCalc+10;
+			return (dMin-cMin)*6+firstCalc+10;
 		}
 
 		function calcStamina() {
